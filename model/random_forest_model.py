@@ -52,6 +52,6 @@ def create_random_forest_model(
     return reg
 
 
-def serialize_model(model_name, dataset_type: Optional[str] = "") -> None:
+def serialize_model(model_name: str, dataset_type: Optional[str] = "") -> None:
     reg = create_random_forest_model(dataset_type)
     joblib.dump(reg, model_name)

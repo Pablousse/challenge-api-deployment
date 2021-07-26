@@ -15,7 +15,9 @@ def postJsonHandler():
     print(request.is_json)
     content = request.get_json()
     print(content)
+    # prediction = clf.predict(query)
     return 'JSON posted'
+
 
 if __name__ == '__main__':
     clf = joblib.load('model.pkl')
