@@ -360,4 +360,6 @@ mypy.ini
 # notebook files
 **/*.ipynb_checkpoints/
 *.ipynb
-model.pkl
+api/model.pkl
+test_data.txt
+api/model_blueprint.csv
