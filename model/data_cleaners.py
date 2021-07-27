@@ -50,7 +50,7 @@ def transform_categorical_feature(df: pd.DataFrame, column_name: str, column_pre
 
     df1 = pd.get_dummies(df[column_name].astype(str))
     if column_prefix != "":
-        df1.columns = ["is_type_" + col for col in df1.columns]
+        df1.columns = [column_prefix + col for col in df1.columns]
 
     new_df = pd.concat([df, df1], axis=1)
 

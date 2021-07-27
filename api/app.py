@@ -19,11 +19,13 @@ def postJsonHandler() -> str:
         content = request.get_json()
         df = preprocess(content)
     except ValueError as error:
-        return format(error)
+        return "ValueError: " + format(error)
     except Exception as e:
-        return format(e)
+        return "Exception: " + format(e)
     prediction = clf.predict(df)
-    return prediction
+    print(prediction[0])
+    # return 'Json posted'
+    return str(prediction[0])
 
 
 if __name__ == '__main__':

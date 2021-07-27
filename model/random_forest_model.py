@@ -1,11 +1,10 @@
+from model.data_cleaners import clean_df, remove_outliers, transform_categorical_feature
 from typing import Optional
 
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 import joblib
-
-from data_cleaners import clean_df, remove_outliers, transform_categorical_feature
 
 
 def create_random_forest_model(

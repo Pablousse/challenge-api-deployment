@@ -363,3 +363,4 @@ mypy.ini
 api/model.pkl
 test_data.txt
 api/model_blueprint.csv
+api/prediction_fit.csv
