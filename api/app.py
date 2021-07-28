@@ -3,6 +3,7 @@ import os
 import joblib
 from flask import Flask, request
 from preprocessing.cleaning_json import preprocess
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -12,10 +13,16 @@ def home() -> str:
     return "alive"
 
 
+@app.route("/docs")
+def index() -> str:
+    return render_template("index.html")
+
+
 @app.route("/predict", methods=["POST"])
 def postJsonHandler() -> str:
-    print(request.is_json)
     try:
+        if not request.is_json:
+            raise ValueError("The input datas were not in a JSON format")
         content = request.get_json()
         df = preprocess(content)
     except ValueError as error:
@@ -23,9 +30,8 @@ def postJsonHandler() -> str:
     except Exception as e:
         return "Exception: " + format(e)
     prediction = clf.predict(df)
-    print(prediction[0])
-    # return 'Json posted'
-    return str(prediction[0])
+
+    return str(prediction)
 
 
 if __name__ == "__main__":
