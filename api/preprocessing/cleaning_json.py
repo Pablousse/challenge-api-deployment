@@ -1,6 +1,7 @@
-from preprocessing.data_cleaners import transform_categorical_feature
 from typing import Any, Dict, List
+
 import pandas as pd
+from preprocessing.data_cleaners import transform_categorical_feature
 
 
 def preprocess(json_data: Dict[str, Any]) -> pd.DataFrame:
@@ -8,22 +9,34 @@ def preprocess(json_data: Dict[str, Any]) -> pd.DataFrame:
     data = json_data["data"]
     int_variables = ["rooms-number", "zip-code", "facade-count"]
     float_variables = ["area"]
-    building_state_enum = ["AS_NEW", "GOOD", "JUST_RENOVATED", "TO_BE_DONE_UP", "TO_RENOVATE", "TO_RESTORE"]
+    building_state_enum = [
+        "AS_NEW",
+        "GOOD",
+        "JUST_RENOVATED",
+        "TO_BE_DONE_UP",
+        "TO_RENOVATE",
+        "TO_RESTORE",
+    ]
     print(1)
     if "area" not in data:
         raise Exception("Area is mandatory")
-    if not (data["building-state"] in building_state_enum):
-        raise ValueError("Wrong building-state value")
+    if "zip-code" not in data:
+        raise Exception("Zip-code is mandatory")
 
     convert_dict_value(data, float_variables, "float")
     convert_dict_value(data, int_variables, "int")
     print(2)
     df = pd.json_normalize(data)
-    df = transform_categorical_feature(df, "property-type", "is_subtype_")
+    if "building-state" in data:
+        if not (data["building-state"] in building_state_enum):
+            raise ValueError("Wrong building-state value")
+        df = transform_categorical_feature(df, "building-state", "is_building_condition_")
+
+    if "property-type" in data:
+        df = transform_categorical_feature(df, "property-type", "is_subtype_")
     df = transform_categorical_feature(df, "zip-code", "zipcode_")
-    df = transform_categorical_feature(df, "building-state", "is_building_condition_")
     print(3)
-    df = df.rename(columns={'rooms-number': 'room_number', 'facade-count': 'facade_count'})
+    df = df.rename(columns={"rooms-number": "room_number", "facade-count": "facade_count"})
     print(4)
     df = apply_blueprint(df)
     print(5)
@@ -44,8 +57,6 @@ def convert_dict_value(data: Dict[str, Any], key_dict: List[str], variable_type:
                     data[variable] = int(data[variable])
     except ValueError:
         raise ValueError(f"Could not convert {data[variable]} to {variable_type} (key = {variable})")
-    except Exception as e:
-        raise e
 
 
 def apply_blueprint(data: pd.DataFrame) -> pd.DataFrame:
@@ -69,6 +80,6 @@ def apply_blueprint(data: pd.DataFrame) -> pd.DataFrame:
     df_test["true_column"] = 1
     df_blueprint["true_column"] = 1
 
-    df_merged = pd.merge(df_test, df_blueprint, on='true_column').drop("true_column", axis=1)
+    df_merged = pd.merge(df_test, df_blueprint, on="true_column").drop("true_column", axis=1)
 
     return df_merged

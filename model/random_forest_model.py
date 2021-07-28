@@ -1,10 +1,11 @@
-from model.data_cleaners import clean_df, remove_outliers, transform_categorical_feature
 from typing import Optional
 
+import joblib
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
-import joblib
+
+from model.data_cleaners import clean_df, remove_outliers, transform_categorical_feature
 
 
 def create_random_forest_model(
@@ -57,7 +58,11 @@ def serialize_model(model_name: str, dataset_type: Optional[str] = "") -> None:
 
 def create_blueprint_dataframe(df: pd.DataFrame) -> None:
 
-    mandatory_column = ["area", "room_number", "facade_count", ]
+    mandatory_column = [
+        "area",
+        "room_number",
+        "facade_count",
+    ]
 
     new_df_mean = df.mean()
     new_df = df.iloc[[0]].replace(1, 0)

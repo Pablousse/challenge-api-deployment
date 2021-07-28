@@ -1,18 +1,18 @@
-from preprocessing.cleaning_json import preprocess
 import os
-from flask import Flask
-from flask import request
+
 import joblib
+from flask import Flask, request
+from preprocessing.cleaning_json import preprocess
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def home() -> str:
-    return 'alive'
+    return "alive"
 
 
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=["POST"])
 def postJsonHandler() -> str:
     print(request.is_json)
     try:
@@ -28,8 +28,8 @@ def postJsonHandler() -> str:
     return str(prediction[0])
 
 
-if __name__ == '__main__':
-    clf = joblib.load('model.pkl')
-    port = int(os.environ.get('PORT', 5000))
+if __name__ == "__main__":
+    clf = joblib.load("model.pkl")
+    port = int(os.environ.get("PORT", 5000))
     app.debug = True
     app.run(host="0.0.0.0", threaded=True, port=port)
