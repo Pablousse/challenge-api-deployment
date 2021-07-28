@@ -15,7 +15,7 @@ def home() -> str:
 
 @app.route("/docs")
 def index() -> str:
-    return render_template("index.html")
+    return render_template("docs.html")
 
 
 @app.route("/predict", methods=["POST"])
