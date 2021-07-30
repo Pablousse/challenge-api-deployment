@@ -7,14 +7,18 @@ def preprocess(json_data: Dict[str, Any]) -> pd.DataFrame:
     data = json_data["data"]
 
     if isinstance(data, list):
+        new_data = []
         for line in data:
-            print(1)
             line = clean_json_line(line)
+            new_data.append(line)
+
+        data = new_data
+
     else:
-        clean_json_line(data)
+        data = clean_json_line(data)
 
     df = pd.json_normalize(data)
-
+    print(data)
     if "building-state" in list(df.columns):
         df = transform_categorical_feature(df, "building-state", "is_building_condition_")
 
@@ -36,6 +40,15 @@ def clean_json_line(json_line: Dict[str, Any]) -> Dict[str, Any]:
     int_variables = ["rooms-number", "zip-code", "facade-count"]
     float_variables = ["area"]
     building_state_enum = ["AS_NEW", "GOOD", "JUST_RENOVATED", "TO_BE_DONE_UP", "TO_RENOVATE", "TO_RESTORE"]
+
+    clean_json_line = {}
+
+    for k, v in json_line.items():
+        if str(v).upper() not in ["None".upper(), "Nan".upper(), "Null".upper()]:
+            clean_json_line[k] = v
+
+    json_line = clean_json_line
+    
     if "area" not in json_line:
         raise Exception("Area is mandatory")
     if "zip-code" not in json_line:
@@ -48,7 +61,7 @@ def clean_json_line(json_line: Dict[str, Any]) -> Dict[str, Any]:
         json_line["building-state"] = str.upper(json_line["building-state"]).strip().replace(" ", "_")
         if not (json_line["building-state"] in building_state_enum):
             raise ValueError("Wrong building-state value")
-
+    print(json_line)
     return json_line
 
 

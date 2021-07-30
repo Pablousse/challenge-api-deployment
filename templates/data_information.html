@@ -4,17 +4,22 @@
     JSON possible input data:
     <ul>
         <li>area: float, mandatory</li>
-        <li>property-type: string, mandatory</li>
+        <li>property-type: string, mandatory<br>
+            must be one of the next possible choices<br>
+            ["APARTMENT", "HOUSSE"]</li>
+        </li>
         <li>zip-code: int, mandatory,</li>
         <li>rooms-number: int, optionnal,</li>
         <li>building-state: string, opttionnal <br>
-            must be of the next possible choice<br>
+            must be one of the next possible choices<br>
             ["AS NEW", "GOOD", "JUST RENOVATED", "TO BE DONE UP",<br>
             "TO RENOVATE", "TO RESTORE"]</li>
         <li>facade-count: int, optionnal</li>
     </ul>
 
-    example:
+    Optionnal argument can be either: null, "Nan", "None" or the argument can be missing like shown in the second example.<br><br>
+
+    Example:
     <pre><code class="light language-json">{
     "data":
         {
@@ -28,17 +33,17 @@
 }
     </code></pre>
 
-    if you want to input multiple real estate in one request, put them in an array.
-    example:
+    if you want to input multiple real estate in one request, put them in an array.<br><br>
+    Example:
     <pre><code class="light language-json">{
     "data": [
         {
             "area": "20",
             "property-type": "APARTMENT",
-            "rooms-number": "2",
+            "rooms-number": null,
             "zip-code": "1000",
             "building-state": "TO_RENOVATE",
-            "facade-count": 2
+            "facade-count": "Nan"
         },
         {
             "area": "20",

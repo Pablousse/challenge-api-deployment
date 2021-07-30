@@ -46,7 +46,7 @@ def get_predict() -> str:
 
 
 if __name__ == "__main__":
-    clf = joblib.load("model.pkl")
+    clf = joblib.load("model/model.pkl")
     port = int(os.environ.get("PORT", 5000))
     app.env = "development"
     app.debug = True

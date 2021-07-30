@@ -11,7 +11,7 @@
   <h3 align="center">Immo Eliza prediction API</h3>
 
   <p align="center">
-    This is an API to get real estate predictions based on inputed datas
+    This is an API to get real estate predictions based on inputed data
   </p>
 </p>
 <br />
