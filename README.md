@@ -54,13 +54,22 @@ During the course of my training with becode I created this API project
    git clone https://github.com/Pablousse/challenge-api-deployment.git
    ```
 
+2. Install dependencies
+   ```sh
+   pip install -r requirements.txt
+   ```
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Go to the main folder of the repo and run to start the game
+Go to the api folder of the repo and run the api on your local machine
    ```sh
-   $ python3 main.py 
+   $ python3 app.py 
    ```
+
+Or go to https://arnaud-durieux-api-deployment.herokuapp.com/ for the online version  
+
+The documentation on how to use the API can be found on https://arnaud-durieux-api-deployment.herokuapp.com/docs
 
 <!-- CONTRIBUTING -->
 ## Contributing
