@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+    <title>Api-deployment Documentation</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,20 +15,21 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Prism.js -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
-    
+    <!-- Less library -->
+    <script src="//cdn.jsdelivr.net/npm/less@4.1.1" ></script>
 
+    <!-- Highlight library -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='highlight/styles/androidstudio.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='light.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark.css') }}">
+    <script src="{{ url_for('static', filename='highlight/highlight.min.js') }}"></script>
+    <script>hljs.highlightAll();</script>
+    
 </head>
 
 <body class="bg-light">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-json.min.js"></script>
-
-    
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-lg-6">
                 <h3>Introduction</h3>
                 <p>This API takes some real estate input data like area and zipcode and give a prediction of the price of this real estate for the Belgian market</p>
@@ -51,7 +52,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <h5><span class="bg-success">GET</span> predict</h5>
-                <p>what this method does</p>
+                <p>Gives information on the input data type expected</p>
             </div>
             <div class="col-lg-6 ">
                 <div class="bg-secondary text-white rounded-top">
@@ -64,45 +65,41 @@
         <div class="row">
             <div class="col-lg-6">
                 <h5><span class="bg-warning">POST</span> predict</h5>
-                <p>
-                    Given input data as a JSON object, this method will return a JSON object with the predicted price.<br>
-                    This method can accept one real estates data or multiple input.<br>
-                    JSON possible input data:
-                    <ul>
-                        <li>area: float, mandatory</li>
-                        <li>property-type: string, mandatory</li>
-                        <li>zip-code: int, mandatory,</li>
-                        <li>rooms-number: int, optionnal,</li>
-                        <li>building-state: string, opttionnal <br>
-                            must be of the next possible choice<br>
-                            ["AS NEW", "GOOD", "JUST RENOVATED", "TO BE DONE UP",<br>
-                            "TO RENOVATE", "TO RESTORE"]</li>
-                        <li>facade-count: int, optionnal</li>
-                    </ul>
-                </p>
+                {% include 'data_information.html' %}
             </div>
             <div class="col-lg-6 ">
-                Example with only one real estate
                 <div class="bg-secondary text-white rounded-top">
                     Python
                 </div>
-                <div class="rounded-bottom">
-                    <pre><code class="language-python">import requests
+                <div>
+                    <pre><code class="dark language-python">import requests
 import json
 
 data = {
-    "data": {
-        "area": "20",
-        "property-type": "APARTMENT",
-        "rooms-number": "2",
-        "zip-code": "1000",
-        "building-state": "TO_RENOVATE",
-        "facade-count": 2
-    }
+    "data": [
+        {
+            "area": "20",
+            "property-type": "APARTMENT",
+            "rooms-number": "2",
+            "zip-code": "1000",
+            "building-state": "TO_RENOVATE",
+            "facade-count": 2
+        },
+        {
+            "area": "20",
+            "property-type": "APARTMENT",
+            "rooms-number": "2",
+            "zip-code": "1070",
+            "building-state": "TO RENOVATE",
+            "facade-count": 2
+        }
+    ]
 }
 
+
 response = requests.post(
-    'https://arnaud-durieux-api-deployment.herokuapp.com/predict', json=data)
+    'https://arnaud-durieux-api-deployment.herokuapp.com/predict'
+    , json=data)
 
 print("Status code: ", response.status_code)
 print("Printing Entire Post Request")
@@ -111,21 +108,20 @@ print(str(response.content))
                     </code></pre>
                 </div>
 
-                <div class="bg-light rounded-top">
-                    Response
+                <div class="rounded-top" style="background-color: #ececec;">
+                    Response: JSON
                 </div>
-                <div class="bg-white rounded-bottom">
-
-                    JSON:
-                    <pre><code class="language-json">{
-"answer": 42,
-"slogan": "Share and Enjoy",
-"towel": null
+                <div>
+                    <pre><code class="light language-json">{
+    "error:": "",
+    "prediction": [
+        126769.16666666666,
+        86275.54
+    ]
 }
                     </code></pre>
                     <br>
                 </div>
-                Example with multiple real estates
             </div>
         </div>
 

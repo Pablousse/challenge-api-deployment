@@ -1,0 +1,87 @@
+.dark {
+  /*!
+    Theme: devibeans (dark)
+    Author: @terminaldweller
+    Maintainer: @terminaldweller
+
+    Inspired by vim's jellybeans theme (https://github.com/nanotech/jellybeans.vim)
+*/
+}
+ pre code.hljs.dark {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+code.hljs.dark  {
+  padding: 3px 5px;
+}
+.dark.hljs {
+  background: #000;
+  color: #a39e9b;
+}
+.dark .hljs-attr,
+.dark .hljs-template-tag {
+  color: #8787d7;
+}
+.dark .hljs-comment,
+.dark .hljs-doctag,
+.dark .hljs-quote {
+  color: #396;
+}
+.dark .hljs-params {
+  color: #a39e9b;
+}
+.dark .hljs-regexp {
+  color: #d700ff;
+}
+.dark .hljs-literal,
+.dark .hljs-number,
+.dark .hljs-selector-id,
+.dark .hljs-tag {
+  color: #ef5350;
+}
+.dark .hljs-meta,
+.dark .hljs-meta .hljs-keyword {
+  color: #0087ff;
+}
+.dark .hljs-code,
+.dark .hljs-formula,
+.dark .hljs-keyword,
+.dark .hljs-link,
+.dark .hljs-selector-attr,
+.dark .hljs-selector-class,
+.dark .hljs-selector-pseudo,
+.dark .hljs-template-variable,
+.dark .hljs-variable {
+  color: #64b5f6;
+}
+.dark .hljs-built_in,
+.dark .hljs-deletion,
+.dark .hljs-title {
+  color: #ff8700;
+}
+.dark .hljs-attribute,
+.dark .hljs-function,
+.dark .hljs-name,
+.dark .hljs-property,
+.dark .hljs-section,
+.dark .hljs-type {
+  color: #ffd75f;
+}
+.dark .hljs-addition,
+.dark .hljs-bullet,
+.dark .hljs-meta .hljs-string,
+.dark .hljs-string,
+.dark .hljs-subst,
+.dark .hljs-symbol {
+  color: #558b2f;
+}
+.dark .hljs-selector-tag {
+  color: #96f;
+}
+.dark .hljs-emphasis {
+  font-style: italic;
+}
+.dark .hljs-strong {
+  font-weight: 700;
+}

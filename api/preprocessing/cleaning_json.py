@@ -1,4 +1,3 @@
-from preprocessing.data_cleaners import transform_categorical_feature
 from typing import Any, Dict, List
 import pandas as pd
 
@@ -6,8 +5,13 @@ import pandas as pd
 def preprocess(json_data: Dict[str, Any]) -> pd.DataFrame:
 
     data = json_data["data"]
-    for line in data:
-        line = clean_json_line(line)
+
+    if isinstance(data, list):
+        for line in data:
+            print(1)
+            line = clean_json_line(line)
+    else:
+        clean_json_line(data)
 
     df = pd.json_normalize(data)
 
@@ -85,7 +89,23 @@ def apply_blueprint(data: pd.DataFrame) -> pd.DataFrame:
 
     df_merged = pd.merge(df_test, df_blueprint, on='true_column').drop("true_column", axis=1)
 
-    print(len(df_merged.columns), len(df_blueprint.columns), len(columns_order))
     df_merged = df_merged[list(columns_order)]
 
     return df_merged
+
+
+def transform_categorical_feature(df: pd.DataFrame, column_name: str, column_prefix: str = "") -> pd.DataFrame:
+    """
+    creates columns of binary values from categorical textual information
+    """
+
+    df1 = pd.get_dummies(df[column_name].astype(str))
+    if column_prefix != "":
+        df1.columns = [column_prefix + col for col in df1.columns]
+
+    new_df = pd.concat([df, df1], axis=1)
+
+    # we don't need transformed column anymore
+    new_df = new_df.drop(columns=[column_name])
+
+    return new_df

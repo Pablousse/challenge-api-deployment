@@ -1,4 +1,5 @@
 import os
+from typing import Any, Dict
 
 import joblib
 from flask import Flask, request
@@ -10,32 +11,43 @@ app = Flask(__name__)
 
 @app.route("/")
 def home() -> str:
-    return "alive"
+    return "It's alive!"
 
 
 @app.route("/docs")
-def index() -> str:
+def docs() -> str:
     return render_template("docs.html")
 
 
 @app.route("/predict", methods=["POST"])
-def postJsonHandler() -> str:
+def post_predict() -> Dict[str, Any]:
     try:
+        prediction = ""
+        error = ""
         if not request.is_json:
-            raise ValueError("The input datas were not in a JSON format")
+            raise Exception("The input data were not in a JSON format")
         content = request.get_json()
         df = preprocess(content)
-    except ValueError as error:
-        return "ValueError: " + format(error)
+        prediction = clf.predict(df)
     except Exception as e:
-        return "Exception: " + format(e)
-    prediction = clf.predict(df)
+        return {"prediction": "", "error:": format(e)}
 
-    return str(prediction)
+    if len(prediction) > 1:
+        result_json = {"prediction": list(prediction), "error:": error}
+    else:
+        result_json = {"prediction": str(prediction[0]), "error:": error}
+
+    return result_json
+
+
+@app.route("/predict", methods=["GET"])
+def get_predict() -> str:
+    return render_template("data_information.html")
 
 
 if __name__ == "__main__":
     clf = joblib.load("model.pkl")
     port = int(os.environ.get("PORT", 5000))
+    app.env = "development"
     app.debug = True
     app.run(host="0.0.0.0", threaded=True, port=port)
