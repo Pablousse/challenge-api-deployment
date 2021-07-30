@@ -85,11 +85,11 @@ Arnaud Durieux - durieux.arnaud@homail.com
 
 Project Link: [https://github.com/Pablousse/challenge-api-deployment](https://github.com/Pablousse/challenge-api-deployment)
 
-[contributors-shield]: https://img.shields.io/github/contributors/Pablousse/hangman-python.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Pablousse/challenge-api-deployment.svg?style=for-the-badge
 [contributors-url]: https://github.com/Pablousse/challenge-api-deployment/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Pablousse/hangman-python.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/Pablousse/challenge-api-deployment.svg?style=for-the-badge
 [forks-url]: https://github.com/Pablousse/challenge-api-deployment/network/members
-[stars-shield]: https://img.shields.io/github/stars/Pablousse/hangman-python.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/Pablousse/challenge-api-deployment.svg?style=for-the-badge
 [stars-url]: https://github.com/Pablousse/challenge-api-deployment/stargazers
-[license-shield]: https://img.shields.io/github/license/Pablousse/hangman-python.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/Pablousse/challenge-api-deployment.svg?style=for-the-badge
 [license-url]: https://github.com/Pablousse/challenge-api-deployment/blob/main/LICENSE.txt
