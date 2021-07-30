@@ -1,0 +1,58 @@
+<p>
+    Given input data as a JSON object, this method will return a JSON object with the predicted price.<br>
+    This method can accept one real estates data or multiple input.<br>
+    JSON possible input data:
+    <ul>
+        <li>area: float, mandatory</li>
+        <li>property-type: string, mandatory<br>
+            must be one of the next possible choices<br>
+            ["APARTMENT", "HOUSSE"]</li>
+        </li>
+        <li>zip-code: int, mandatory,</li>
+        <li>rooms-number: int, optionnal,</li>
+        <li>building-state: string, opttionnal <br>
+            must be one of the next possible choices<br>
+            ["AS NEW", "GOOD", "JUST RENOVATED", "TO BE DONE UP",<br>
+            "TO RENOVATE", "TO RESTORE"]</li>
+        <li>facade-count: int, optionnal</li>
+    </ul>
+
+    Optionnal argument can be either: null, "Nan", "None" or the argument can be missing like shown in the second example.<br><br>
+
+    Example:
+    <pre><code class="light language-json">{
+    "data":
+        {
+            "area": "20",
+            "property-type": "APARTMENT",
+            "rooms-number": "2",
+            "zip-code": "1000",
+            "building-state": "TO_RENOVATE",
+            "facade-count": 2
+        }
+}
+    </code></pre>
+
+    if you want to input multiple real estate in one request, put them in an array.<br><br>
+    Example:
+    <pre><code class="light language-json">{
+    "data": [
+        {
+            "area": "20",
+            "property-type": "APARTMENT",
+            "rooms-number": null,
+            "zip-code": "1000",
+            "building-state": "TO_RENOVATE",
+            "facade-count": "Nan"
+        },
+        {
+            "area": "20",
+            "property-type": "APARTMENT",
+            "zip-code": "1070",
+            "building-state": "TO RENOVATE"
+        }
+    ]
+}
+    </code></pre>
+    
+</p>

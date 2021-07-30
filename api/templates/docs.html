@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Api-deployment Documentation</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Less library -->
+    <script src="//cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+
+    <!-- Highlight library -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='highlight/styles/androidstudio.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='light.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark.css') }}">
+    <script src="{{ url_for('static', filename='highlight/highlight.min.js') }}"></script>
+    <script>hljs.highlightAll();</script>
+    
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <h3>Introduction</h3>
+                <p>This API takes some real estate input data like area and zipcode and give a prediction of the price of this real estate for the Belgian market</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Technical Info</h3>
+                <h5>Base URL</h5>
+                <p>The API can be reached by using the following base URL: <br> 
+                    <a href="https://arnaud-durieux-api-deployment.herokuapp.com/" target="_blank">
+                        https://arnaud-durieux-api-deployment.herokuapp.com/
+                    </a>
+                </p>
+                <p>The Api will return "Alive" if it is up and running</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-6">
+                <h5><span class="bg-success">GET</span> predict</h5>
+                <p>Gives information on the input data type expected</p>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="bg-secondary text-white rounded-top">
+                </div>
+                <div class="bg-dark text-white rounded-bottom">
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-6">
+                <h5><span class="bg-warning">POST</span> predict</h5>
+                {% include 'data_information.html' %}
+            </div>
+            <div class="col-lg-6 ">
+                <div class="bg-secondary text-white rounded-top">
+                    Python
+                </div>
+                <div>
+                    <pre><code class="dark language-python">import requests
+
+data = {
+    "data": [
+        {
+            "area": "20",
+            "property-type": "APARTMENT",
+            "rooms-number": "null",
+            "zip-code": "1000",
+            "building-state": "TO_RENOVATE",
+            "facade-count": "Nan"
+        },
+        {
+            "area": "20",
+            "property-type": "APARTMENT",
+            "zip-code": "1070",
+            "building-state": "TO RENOVATE"
+        }
+    ]
+}
+
+
+response = requests.post(
+    'https://arnaud-durieux-api-deployment.herokuapp.com/predict'
+    , json=data)
+
+print(response.json())
+                        
+                    </code></pre>
+                </div>
+
+                <div class="rounded-top" style="background-color: #ececec;">
+                    Response: JSON
+                </div>
+                <div>
+                    <pre><code class="light language-json">{
+    'error:': '', 
+    'prediction': [
+        128844.16666666666, 
+        89944.35
+    ]
+}
+                    </code></pre>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

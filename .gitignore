@@ -360,3 +360,5 @@ mypy.ini
 # notebook files
 **/*.ipynb_checkpoints/
 *.ipynb
+test_data.txt
+api/prediction_fit.csv
