@@ -73,25 +73,22 @@
                 </div>
                 <div>
                     <pre><code class="dark language-python">import requests
-import json
 
 data = {
     "data": [
         {
             "area": "20",
             "property-type": "APARTMENT",
-            "rooms-number": "2",
+            "rooms-number": "null",
             "zip-code": "1000",
             "building-state": "TO_RENOVATE",
-            "facade-count": 2
+            "facade-count": "Nan"
         },
         {
             "area": "20",
             "property-type": "APARTMENT",
-            "rooms-number": "2",
             "zip-code": "1070",
-            "building-state": "TO RENOVATE",
-            "facade-count": 2
+            "building-state": "TO RENOVATE"
         }
     ]
 }
@@ -101,10 +98,8 @@ response = requests.post(
     'https://arnaud-durieux-api-deployment.herokuapp.com/predict'
     , json=data)
 
-print("Status code: ", response.status_code)
-print("Printing Entire Post Request")
-# print(response.json())
-print(str(response.content))
+print(response.json())
+                        
                     </code></pre>
                 </div>
 
@@ -113,10 +108,10 @@ print(str(response.content))
                 </div>
                 <div>
                     <pre><code class="light language-json">{
-    "error:": "",
-    "prediction": [
-        126769.16666666666,
-        86275.54
+    'error:': '', 
+    'prediction': [
+        128844.16666666666, 
+        89944.35
     ]
 }
                     </code></pre>
