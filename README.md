@@ -11,7 +11,7 @@
   <h3 align="center">Immo Eliza prediction API</h3>
 
   <p align="center">
-    This is an API to get real estate predictions based on inputed data
+    This is an API to get real estate predictions based on input data.
   </p>
 </p>
 <br />
@@ -39,7 +39,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-During the course of my training with becode I created this API project
+During my training with BeCode, I created this API project.
 
 ### Built With
 
@@ -62,12 +62,12 @@ During the course of my training with becode I created this API project
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Go to the api folder of the repo and run the api on your local machine
+Go to the API folder of the repo and run the API on your local machine
    ```sh
    $ python3 app.py 
    ```
 
-Or go to https://arnaud-durieux-api-deployment.herokuapp.com/ for the online version  
+Or go to https://arnaud-durieux-api-deployment.herokuapp.com/ for the online version.
 
 The documentation on how to use the API can be found on https://arnaud-durieux-api-deployment.herokuapp.com/docs
 
@@ -90,7 +90,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Arnaud Durieux - durieux.arnaud@homail.com
+Arnaud Durieux - durieux.arnaud@hotmail.com
 
 Project Link: [https://github.com/Pablousse/challenge-api-deployment](https://github.com/Pablousse/challenge-api-deployment)
 
