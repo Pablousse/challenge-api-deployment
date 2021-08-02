@@ -23,6 +23,7 @@ def api():
 def docs() -> str:
     return render_template("docs.html")
 
+
 @app.route("/predict", methods=["POST"])
 def post_predict() -> Dict[str, Any]:
     try:
