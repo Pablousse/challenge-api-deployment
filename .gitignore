@@ -362,3 +362,4 @@ mypy.ini
 *.ipynb
 test_data.txt
 api/prediction_fit.csv
+api/templates/test.html

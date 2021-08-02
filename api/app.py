@@ -2,22 +2,26 @@ import os
 from typing import Any, Dict
 
 import joblib
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from preprocessing.cleaning_json import preprocess
 from flask import render_template
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route("/")
 def home() -> str:
     return "It's alive!"
 
 
+@app.route('/api')
+def api():
+    return jsonify({'data' : 'It is now working!'})
+
 @app.route("/docs")
 def docs() -> str:
     return render_template("docs.html")
-
 
 @app.route("/predict", methods=["POST"])
 def post_predict() -> Dict[str, Any]:
